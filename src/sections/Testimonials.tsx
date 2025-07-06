@@ -29,8 +29,21 @@ const testimonials = [
   },
 ];
 
+// Hook para detectar si es móvil
+function useIsMobile() {
+  const [isMobile, setIsMobile] = React.useState(false);
+  React.useEffect(() => {
+    const check = () => setIsMobile(window.innerWidth < 1024);
+    check();
+    window.addEventListener('resize', check);
+    return () => window.removeEventListener('resize', check);
+  }, []);
+  return isMobile;
+}
+
 const Testimonials = () => {
   const [index, setIndex] = useState(0);
+  const isMobile = useIsMobile();
 
   useEffect(() => {
     const timer = setInterval(() => {
@@ -54,16 +67,25 @@ const Testimonials = () => {
     exit: { opacity: 0, y: -20 },
   };
 
-  const imageVariants = {
-    initial: { opacity: 0 },
-    animate: { opacity: 1 },
-    exit: { opacity: 0 },
-  };
+  const imageVariants = isMobile
+    ? {
+        initial: { opacity: 0 },
+        animate: { opacity: 1 },
+        exit: { opacity: 0 },
+      }
+    : {
+        initial: { opacity: 0 },
+        animate: { opacity: 1 },
+        exit: { opacity: 0 },
+      };
 
   return (
-    <section className="bg-brand-light-gray relative z-10">
-      <div className="container mx-auto">
-        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[500px]">
+    <section
+      className="relative z-10 bg-brand-light-gray bg-gray-100"
+      style={{ backgroundColor: '#F3F4F6', backgroundImage: 'none', boxShadow: 'none' }}
+    >
+      <div className="container mx-auto my-40 bg-brand-light-gray bg-gray-100 rounded-2xl">
+        <div className="grid grid-cols-1 lg:grid-cols-2 min-h-[500px] bg-brand-light-gray bg-gray-100 rounded-2xl">
           {/* Left side: Text content */}
           <div className="flex flex-col justify-center px-6 py-12 sm:px-12 bg-white rounded-tr-[80px]">
             <h3 className="text-xl font-bold text-brand-dark-gray/50 mb-4 tracking-widest uppercase">
@@ -88,8 +110,8 @@ const Testimonials = () => {
             </div>
           </div>
 
-          {/* Right side: Image */}
-          <div className="relative min-h-[400px] lg:min-h-full bg-brand-light-gray flex justify-center items-end">
+          {/* Imagen: posición absoluta para ambos, tamaño y bottom responsivo */}
+          <div className="relative min-h-[220px] lg:min-h-full flex justify-center items-end bg-brand-light-gray bg-gray-100">
             <AnimatePresence>
               <motion.div
                 key={index}
@@ -97,14 +119,14 @@ const Testimonials = () => {
                 initial="initial"
                 animate="animate"
                 exit="exit"
-                transition={{ duration: 1.0, ease: "easeInOut" }}
-                className="absolute inset-0 flex justify-center items-center"
+                transition={{ duration: 0.6, ease: 'easeInOut' }}
+                className="absolute left-1/2 -translate-x-1/2 bottom-0 lg:bottom-10 flex justify-center items-end"
               >
                 <Image
                   src={currentTestimonial.image}
                   alt={currentTestimonial.name}
-                  width={400}
-                  height={400}
+                  width={isMobile ? 180 : 400}
+                  height={isMobile ? 180 : 400}
                   style={{ objectFit: 'contain' }}
                 />
               </motion.div>

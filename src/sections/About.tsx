@@ -1,48 +1,65 @@
+'use client';
+
 import React from 'react';
-import Image from 'next/image';
+import { motion, Variants } from 'framer-motion';
+import AboutImage from '@/components/AboutImage';
+import AboutContent from '@/components/AboutContent';
+import AboutTitle from '@/components/AboutTitle';
+import AboutValues from '@/components/AboutValues';
 
 const About = () => {
+  const containerVariants: Variants = {
+    hidden: { opacity: 0 },
+    visible: {
+      opacity: 1,
+      transition: {
+        duration: 0.6,
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
+      },
+    },
+  };
+
   return (
-    <section id="sobre-mi" className="py-20 bg-white">
-      <div className="container mx-auto px-6">
-        <div className="md:flex md:items-center md:space-x-12">
-          {/* Image Column */}
-          <div className="md:w-1/3">
-            <div className="relative w-full h-96 rounded-lg overflow-hidden shadow-lg">
-              {/* Placeholder Image */}
-              <Image
-                src="https://images.unsplash.com/photo-1559839734-2b71ea197ec2?q=80&w=2070&auto=format&fit=crop"
-                alt="Foto profesional de la Dra. Daniela Ramírez"
-                fill
-                style={{ objectFit: 'cover' }}
-              />
-            </div>
-          </div>
+          <motion.section 
+      id="sobre-mi" 
+      className="py-20 bg-white"
+      variants={containerVariants}
+      initial="hidden"
+      whileInView="visible"
+      viewport={{ once: true, amount: 0.3 }}
+    >
+      <div className="max-w-5xl mx-auto px-6 mb-30 flex flex-col md:flex-row justify-center items-start md:h-[600px] relative">
+        {/* Image Column */}
+        <AboutImage delay={0.2} />
+        
+        {/* Text Column */}
+        <div className="relative bg-white rounded-lg shadow-xl p-6 md:-ml-20 md:max-w-xl mt-8 md:mt-0 z-20 self-end md:mb-4">
+          <AboutTitle delay={0.8} />
+          
+          <motion.p 
+            className="mt-2 text-gray-600"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            Con más de 15 años de experiencia dedicados a la salud dental, la Dra. Ramírez combina la más alta profesionalidad con un trato cálido y cercano. Su misión es simple: devolverle la sonrisa a cada paciente, asegurando su bienestar y confianza en cada paso del tratamiento.
+          </motion.p>
+          
+          <motion.p 
+            className="mt-4 text-gray-600"
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6, delay: 1.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+            viewport={{ once: true, amount: 0.3 }}
+          >
+            Graduada con honores de la Universidad Nacional, ha continuado su formación con especializaciones en Ortodoncia y Odontopediatría, manteniéndose siempre a la vanguardia de las últimas tecnologías.
+          </motion.p>
 
-          {/* Text Column */}
-          <div className="md:w-2/3 mt-8 md:mt-0">
-            <h2 className="text-3xl font-bold text-brand-dark-gray">
-              Conoce a la Dra. Daniela Ramírez
-            </h2>
-            <p className="mt-4 text-gray-600">
-              Con más de 15 años de experiencia dedicados a la salud dental, la Dra. Ramírez combina la más alta profesionalidad con un trato cálido y cercano. Su misión es simple: devolverle la sonrisa a cada paciente, asegurando su bienestar y confianza en cada paso del tratamiento.
-            </p>
-            <p className="mt-4 text-gray-600">
-              Graduada con honores de la Universidad Nacional, ha continuado su formación con especializaciones en Ortodoncia y Odontopediatría, manteniéndose siempre a la vanguardia de las últimas tecnologías.
-            </p>
-
-            <div className="mt-6">
-              <h3 className="text-xl font-semibold text-brand-dark-gray">Nuestros Valores</h3>
-              <ul className="mt-2 list-disc list-inside text-gray-600 space-y-1">
-                <li><span className="font-semibold">Confianza:</span> Creamos un ambiente seguro y transparente.</li>
-                <li><span className="font-semibold">Calidad:</span> Usamos los mejores materiales y tecnología de punta.</li>
-                <li><span className="font-semibold">Empatía:</span> Entendemos y atendemos tus necesidades y preocupaciones.</li>
-              </ul>
-            </div>
-          </div>
+          <AboutValues delay={2.0} />
         </div>
       </div>
-    </section>
+    </motion.section>
   );
 };
 
