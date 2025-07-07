@@ -60,15 +60,17 @@ const Header = () => {
             onClick={scrollToForm}
             whileHover={{ 
               scale: 1.05,
-              boxShadow: "0 10px 25px rgba(255, 255, 255, 0.3)"
+              boxShadow: "0 25px 50px -12px rgba(255, 255, 255, 0.4)"
             }}
             whileTap={{ scale: 0.95 }}
-            transition={{ type: "spring", stiffness: 600, damping: 25 }}
-            className="px-8 py-3 font-semibold text-black bg-white rounded-full hover:bg-gray-100 transition-all duration-150 relative overflow-hidden group cursor-pointer"
+            transition={{ 
+              type: "spring", 
+              stiffness: 400, 
+              damping: 17 
+            }}
+            className="px-8 py-3 font-semibold text-black bg-white rounded-full hover:bg-gray-100 transition-all duration-300 hover:shadow-2xl hover:shadow-white/40 cursor-pointer"
           >
-            <span className="relative z-10">Agendar tu cita</span>
-            {/* Shimmer effect */}
-            <div className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-150"></div>
+            Agendar tu cita
           </motion.button>
         </div>
 
@@ -169,10 +171,17 @@ const Header = () => {
                        scrollToForm();
                        closeMobileMenu();
                      }}
-                     whileHover={{ scale: 1.02 }}
-                     whileTap={{ scale: 0.98 }}
-                     transition={{ type: "spring", stiffness: 500, damping: 20 }}
-                     className="w-full px-6 py-4 font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-colors duration-150 shadow-lg cursor-pointer"
+                     whileHover={{ 
+                       scale: 1.05,
+                       boxShadow: "0 25px 50px -12px rgba(59, 130, 246, 0.4)"
+                     }}
+                     whileTap={{ scale: 0.95 }}
+                     transition={{ 
+                       type: "spring", 
+                       stiffness: 400, 
+                       damping: 17 
+                     }}
+                     className="w-full px-6 py-4 font-semibold text-white bg-blue-600 rounded-lg hover:bg-blue-700 transition-all duration-300 hover:shadow-2xl hover:shadow-blue-600/40 cursor-pointer"
                    >
                      Agendar tu cita
                    </motion.button>
