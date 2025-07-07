@@ -1,14 +1,14 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 
 interface AboutContentProps {
   delay?: number;
 }
 
 const AboutContent: React.FC<AboutContentProps> = ({ delay = 0.5 }) => {
-  const contentVariants = {
+  const contentVariants: Variants = {
     hidden: {
       opacity: 0,
       x: 100,
@@ -20,7 +20,7 @@ const AboutContent: React.FC<AboutContentProps> = ({ delay = 0.5 }) => {
       scale: 1,
       transition: {
         duration: 0.8,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
         delay: delay,
       },
     },
@@ -32,7 +32,7 @@ const AboutContent: React.FC<AboutContentProps> = ({ delay = 0.5 }) => {
       variants={contentVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, threshold: 0.3 }}
+      viewport={{ once: true, amount: 0.3 }}
     >
       <h2 className="text-3xl font-bold mb-4">
         <span className="text-brand-dark-gray">Acerca de </span>

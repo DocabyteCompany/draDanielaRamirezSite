@@ -20,7 +20,7 @@ const About = () => {
   };
 
   return (
-          <motion.section 
+    <motion.section 
       id="sobre-mi" 
       className="py-20 bg-white"
       variants={containerVariants}
@@ -40,7 +40,7 @@ const About = () => {
             className="mt-2 text-gray-600"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.1, ease: [0.25, 0.46, 0.45, 0.94] }}
+            transition={{ duration: 0.6, delay: 1.1, ease: [0.25, 0.46, 0.45, 0.94] as const }}
             viewport={{ once: true, amount: 0.3 }}
           >
             Con más de 15 años de experiencia dedicados a la salud dental, la Dra. Ramírez combina la más alta profesionalidad con un trato cálido y cercano. Su misión es simple: devolverle la sonrisa a cada paciente, asegurando su bienestar y confianza en cada paso del tratamiento.
@@ -50,7 +50,7 @@ const About = () => {
             className="mt-4 text-gray-600"
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6, delay: 1.4, ease: [0.25, 0.46, 0.45, 0.94] }}
+            transition={{ duration: 0.6, delay: 1.4, ease: [0.25, 0.46, 0.45, 0.94] as const }}
             viewport={{ once: true, amount: 0.3 }}
           >
             Graduada con honores de la Universidad Nacional, ha continuado su formación con especializaciones en Ortodoncia y Odontopediatría, manteniéndose siempre a la vanguardia de las últimas tecnologías.

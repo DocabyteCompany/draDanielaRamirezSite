@@ -2,14 +2,14 @@
 
 import React from 'react';
 import Image from 'next/image';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 
 interface AboutImageProps {
   delay?: number;
 }
 
 const AboutImage: React.FC<AboutImageProps> = ({ delay = 0.2 }) => {
-  const imageVariants = {
+  const imageVariants: Variants = {
     hidden: {
       opacity: 0,
       x: -100,
@@ -21,7 +21,7 @@ const AboutImage: React.FC<AboutImageProps> = ({ delay = 0.2 }) => {
       scale: 1,
       transition: {
         duration: 0.8,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
         delay: delay,
       },
     },
@@ -33,7 +33,7 @@ const AboutImage: React.FC<AboutImageProps> = ({ delay = 0.2 }) => {
       variants={imageVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, threshold: 0.3 }}
+      viewport={{ once: true, amount: 0.3 }}
     >
       <div className="relative w-full h-full rounded-2xl overflow-hidden shadow-2xl bg-brand-light-gray border-8 border-white">
         <Image

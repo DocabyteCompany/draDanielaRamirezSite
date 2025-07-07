@@ -1,7 +1,7 @@
 'use client';
 
 import React from 'react';
-import { motion } from 'framer-motion';
+import { motion, Variants } from 'framer-motion';
 
 interface AboutValuesProps {
   delay?: number;
@@ -14,7 +14,7 @@ const AboutValues: React.FC<AboutValuesProps> = ({ delay = 2.0 }) => {
     { key: 'Empatía', description: 'Entendemos y atendemos tus necesidades y preocupaciones.' },
   ];
 
-  const containerVariants = {
+  const containerVariants: Variants = {
     hidden: { opacity: 0 },
     visible: {
       opacity: 1,
@@ -26,7 +26,7 @@ const AboutValues: React.FC<AboutValuesProps> = ({ delay = 2.0 }) => {
     },
   };
 
-  const itemVariants = {
+  const itemVariants: Variants = {
     hidden: {
       opacity: 0,
       y: 20,
@@ -38,12 +38,12 @@ const AboutValues: React.FC<AboutValuesProps> = ({ delay = 2.0 }) => {
       x: 0,
       transition: {
         duration: 0.6,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
       },
     },
   };
 
-  const titleVariants = {
+  const titleVariants: Variants = {
     hidden: {
       opacity: 0,
       y: -10,
@@ -53,7 +53,7 @@ const AboutValues: React.FC<AboutValuesProps> = ({ delay = 2.0 }) => {
       y: 0,
       transition: {
         duration: 0.6,
-        ease: [0.25, 0.46, 0.45, 0.94],
+        ease: [0.25, 0.46, 0.45, 0.94] as const,
         delay: delay - 0.3, // Aparece antes que la lista
       },
     },
@@ -65,7 +65,7 @@ const AboutValues: React.FC<AboutValuesProps> = ({ delay = 2.0 }) => {
       variants={containerVariants}
       initial="hidden"
       whileInView="visible"
-      viewport={{ once: true, threshold: 0.3 }}
+      viewport={{ once: true, amount: 0.3 }}
     >
       <motion.h3 
         className="text-xl font-semibold text-brand-dark-gray"
