@@ -194,31 +194,31 @@ const Chatbot = forwardRef<ChatbotHandle>((props, ref) => {
 
       {/* Ventana de chat */}
       {isOpen && (
-        <div className="absolute bottom-20 right-0 w-72 h-80 md:w-80 md:h-96 bg-white rounded-lg shadow-2xl border border-gray-200 flex flex-col chatbot-enter">
+        <div className="absolute bottom-20 right-0 w-80 h-96 sm:w-72 sm:h-80 md:w-80 md:h-96 bg-white rounded-lg shadow-2xl border border-gray-200 flex flex-col chatbot-enter">
           {/* Header */}
-          <div className="bg-brand-primary text-white p-4 rounded-t-lg flex items-center justify-between">
+          <div className="bg-brand-primary text-white p-3 sm:p-4 rounded-t-lg flex items-center justify-between">
             <div className="flex items-center space-x-2">
-              <TbRobot size={20} />
-              <span className="font-semibold">Asistente IA</span>
+              <TbRobot size={18} className="sm:w-5 sm:h-5" />
+              <span className="font-semibold text-sm sm:text-base">Asistente IA</span>
             </div>
             <button
               onClick={() => setIsOpen(false)}
               className="text-white hover:text-gray-200 transition-colors"
               aria-label="Cerrar chat"
             >
-              <TbX size={20} />
+              <TbX size={18} className="sm:w-5 sm:h-5" />
             </button>
           </div>
 
           {/* Mensajes */}
-          <div className="flex-1 overflow-y-auto p-4 space-y-4">
+          <div className="flex-1 overflow-y-auto p-3 sm:p-4 space-y-3 sm:space-y-4">
             {messages.map((message) => (
               <div
                 key={message.id}
                 className={`flex ${message.isBot ? 'justify-start' : 'justify-end'}`}
               >
                 <div
-                  className={`max-w-xs px-4 py-2 rounded-lg ${
+                  className={`max-w-[85%] sm:max-w-xs px-3 py-2 rounded-lg ${
                     message.isBot
                       ? 'bg-gray-100 text-gray-800'
                       : 'bg-brand-primary text-white'
@@ -233,7 +233,7 @@ const Chatbot = forwardRef<ChatbotHandle>((props, ref) => {
                   </p>
                   {message.customConfirm && (
                     <button
-                      className="mt-4 px-4 py-2 bg-brand-primary text-white rounded-lg hover:bg-opacity-90 transition-colors"
+                      className="mt-3 sm:mt-4 px-3 py-2 bg-brand-primary text-white rounded-lg hover:bg-opacity-90 transition-colors text-sm"
                       onClick={() => handleConfirm(message.confirmData)}
                     >
                       Confirmar y agendar
@@ -245,7 +245,7 @@ const Chatbot = forwardRef<ChatbotHandle>((props, ref) => {
             
             {isTyping && (
               <div className="flex justify-start">
-                <div className="bg-gray-100 text-gray-800 px-4 py-2 rounded-lg">
+                <div className="bg-gray-100 text-gray-800 px-3 py-2 rounded-lg">
                   <div className="flex space-x-1">
                     <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce"></div>
                     <div className="w-2 h-2 bg-gray-400 rounded-full animate-bounce" style={{ animationDelay: '0.1s' }}></div>
@@ -259,7 +259,7 @@ const Chatbot = forwardRef<ChatbotHandle>((props, ref) => {
           </div>
 
           {/* Formulario */}
-          <form onSubmit={handleSubmit} className="p-4 border-t border-gray-200">
+          <form onSubmit={handleSubmit} className="p-3 sm:p-4 border-t border-gray-200">
             <div className="flex space-x-2">
               <input
                 ref={inputRef}
@@ -267,16 +267,16 @@ const Chatbot = forwardRef<ChatbotHandle>((props, ref) => {
                 value={inputValue}
                 onChange={(e) => setInputValue(e.target.value)}
                 placeholder="Escribe tu mensaje..."
-                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent"
+                className="flex-1 px-3 py-2 border border-gray-300 rounded-lg focus:outline-none focus:ring-2 focus:ring-brand-primary focus:border-transparent text-sm"
                 disabled={isTyping}
               />
               <button
                 type="submit"
                 disabled={!inputValue.trim() || isTyping}
-                className="px-4 py-2 bg-brand-primary text-white rounded-lg hover:bg-opacity-90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed"
+                className="px-3 py-2 bg-brand-primary text-white rounded-lg hover:bg-opacity-90 transition-colors disabled:opacity-50 disabled:cursor-not-allowed flex-shrink-0"
                 aria-label="Enviar mensaje"
               >
-                <TbSend size={18} />
+                <TbSend size={16} className="sm:w-4 sm:h-4" />
               </button>
             </div>
           </form>
